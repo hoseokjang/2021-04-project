@@ -15,3 +15,5 @@ with open('image\\project\\test.jpg','wb') as f:
     s = requests.get(src)
     print(s)
     f.write(s.content)
+# 이미지를 얻는 코드 >>> 변수 list를 만들때 find가 아닌 find_all로 만들어서
+# 반복문을 돌리면 얻을 수 있음
