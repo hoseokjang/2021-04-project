@@ -1,0 +1,26 @@
+import requests
+from bs4 import BeautifulSoup as bs
+url = 'http://www.ssg.com/item/itemView.ssg?itemId=1000054483250&siteNo=6001&salestrNo=2034'
+headers={'User-Agent':'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36'}
+recvd = requests.get(url,headers=headers)
+print(recvd)
+dom = bs(recvd.content,'html.parser')
+title = dom.find(class_="cdtl_info_tit").text # 상품이름
+title = title[:title.find('원')]
+# origin = dom.find(class_="txt_origin").text # 원산지 상품 밑에는 상세설명 참고라고 작성
+price = dom.find(class_="ssg_price").text # 가격
+id = dom.find(class_="cdtl_prd_num").text # 상품 코드
+id = id[id.find(':')+2:].strip()
+rate = dom.find(class_="cdtl_grade_total").text
+intag = dom.find_all(class_="in")
+producer = intag[3].text
+expire = intag[7].text
+origin = intag[21].text
+storage = intag[17].text
+capimg = dom.find_all(class_="cdtl_capture_img")
+iframe = dom.find(id="_ifr_html")
+src = iframe['src']
+desc4 = 'www.ssg.com'+src
+
+# 안에 상세내용이 크롤링이 불가
+# https://kangprog.tistory.com/12 사이트 참조 (selenium 방법 이용)
