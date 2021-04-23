@@ -1,0 +1,6 @@
+with open('data\\project\\감\\감.txt','r',encoding='utf-8') as f:
+    urllist = f.readlines()
+    for url in urllist:
+        print(url.strip())
+        
+# url을 하나씩 
