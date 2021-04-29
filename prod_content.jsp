@@ -2,11 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style>
-#third_pord div{align:center;}
+#third_prod div{align:center;}
 #table{text-align:center;}
 #prod_info{text-align:left;}
 #main_price{display:block;text-align:right;}
-#buy a
+#third_prod #buy a
 {
 	display:table-cell;
 	color:white;
@@ -19,10 +19,10 @@
 }
 #buy #pocket{background:black;}
 #buy #buy_now{background:red;}
-#third_pord ul li{list-style:none;float:left;}
-#tab{text-align:center;width:1000px;margin-left:auto;margin-right:auto;}
-#tab li{display:inline-block;text-align:center;margin-top:50px;}
-#tab a
+#third_prod ul li{list-style:none;float:left;}
+#third_prod_tab{text-align:center;width:1000px;margin-left:auto;margin-right:auto;}
+#third_prod_tab li{display:inline-block;text-align:center;margin-top:50px;}
+#third_prod_tab a
 {
 	color:black;
 	border:1px solid black;
@@ -90,7 +90,7 @@
 </table>
 
 <div style="border-top:1px solid grey;padding-bottom:50px;">
-	<ul id="tab">
+	<ul id="third_prod_tab">
 		<li> <a href="">상품 상세 정보</a> </li>
 		<li> <a href="">배송/반품/교환 안내</a> </li>
 		<li> <a href="">상품 필수 정보</a> </li>
