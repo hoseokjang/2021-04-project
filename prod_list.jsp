@@ -40,7 +40,7 @@
 %>
 <c:import url="ssgtop.jsp"/>
 <!-- 문서 시작 -->
-<div align="center" style="width:1500px"> <!-- 전체 문서의 시작 -->
+<div id="third_prod_list" align="center" style="width:1500px"> <!-- 전체 문서의 시작 -->
 <div align="center" id="category" style="width:1200px"> <!-- 큰 카테고리 -->
 	<h2>큰 카테고리</h2>
 	<div id="category_prod_number" align="right"><span id="prod_number">0000</span>개의 상품이 있습니다.</div>

@@ -1,12 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style>
-div{align:center;}
+#third_pord div{align:center;}
 #table{text-align:center;}
 #prod_info{text-align:left;}
 #main_price{display:block;text-align:right;}
@@ -23,7 +19,7 @@ div{align:center;}
 }
 #buy #pocket{background:black;}
 #buy #buy_now{background:red;}
-ul li{list-style:none;float:left;}
+#third_pord ul li{list-style:none;float:left;}
 #tab{text-align:center;width:1000px;margin-left:auto;margin-right:auto;}
 #tab li{display:inline-block;text-align:center;margin-top:50px;}
 #tab a
@@ -46,9 +42,8 @@ ul li{list-style:none;float:left;}
 #prod_change td{border-bottom:1px solid grey;padding-top:10px;padding-bottom:10px;}
 #prod_change_info{font-weight:bold;}
 </style>
-</head>
-<body>
-<div width="1500" align="center">
+<c:import url="ssgtop.jsp"/>
+<div id="third_prod" width="1500" align="center">
 <table width="1200" align="center" id="prod_info">
 	<tr>
 		<td rowspan="8" style="padding-right:50px;vertical-align:top;"> <img src="1.jpg" width="600" height="500"> </td>
@@ -265,5 +260,4 @@ ul li{list-style:none;float:left;}
 	전자상거래 등에서의 소비자 보호에 관한 법률에 의한 반품규정이 판매자가 상품상세 페이지 등에서 개별적으로 고지 또는 지정한 반품조건보다 우선합니다.
 </div>
 </div>
-</body>
-</html>
+<c:import url="ssgbottom.jsp"/>
