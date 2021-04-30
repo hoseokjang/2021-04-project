@@ -1,5 +1,5 @@
 package ssg.dto;
-
+# 상품 필수정보 변수명 수정 필요 ( DB,Dto,Dao 전부 다 수정)
 public class ProductDto {
 	private int prod_price,prod_num,prod_readnum;
 	private float prod_rate;
