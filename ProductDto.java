@@ -1,10 +1,10 @@
 package ssg.dto;
-# 상품 필수정보 변수명 수정 필요 ( DB,Dto,Dao 전부 다 수정)
+
 public class ProductDto {
 	private int prod_price,prod_num,prod_readnum;
 	private float prod_rate;
 	private String prod_id,prod_name,prod_category,prod_dcategory
-		,prod_writeday,prod_producer,prod_expire,prod_origin,prod_storage;
+		,prod_writeday,prod_opt1,prod_opt2,prod_opt3,prod_opt4;
 	public int getProd_price() {
 		return prod_price;
 	}
@@ -59,30 +59,30 @@ public class ProductDto {
 	public void setProd_writeday(String prod_writeday) {
 		this.prod_writeday = prod_writeday;
 	}
-	public String getProd_producer() {
-		return prod_producer;
+	public String getProd_opt1() {
+		return prod_opt1;
 	}
-	public void setProd_producer(String prod_producer) {
-		this.prod_producer = prod_producer;
+	public void setProd_opt1(String prod_opt1) {
+		this.prod_opt1 = prod_opt1;
 	}
-	public String getProd_expire() {
-		return prod_expire;
+	public String getProd_opt2() {
+		return prod_opt2;
 	}
-	public void setProd_expire(String prod_expire) {
-		this.prod_expire = prod_expire;
+	public void setProd_opt2(String prod_opt2) {
+		this.prod_opt2 = prod_opt2;
 	}
-	public String getProd_origin() {
-		return prod_origin;
+	public String getProd_opt3() {
+		return prod_opt3;
 	}
-	public void setProd_origin(String prod_origin) {
-		this.prod_origin = prod_origin;
+	public void setProd_opt3(String prod_opt3) {
+		this.prod_opt3 = prod_opt3;
 	}
-	public String getProd_storage() {
-		return prod_storage;
+	public String getProd_opt4() {
+		return prod_opt4;
 	}
-	public void setProd_storage(String prod_storage) {
-		this.prod_storage = prod_storage;
+	public void setProd_opt4(String prod_opt4) {
+		this.prod_opt4 = prod_opt4;
 	}
-	
+
 	
 }

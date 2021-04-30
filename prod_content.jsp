@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <style>
-#third_prod div{align:center;}
+#third_pord div{align:center;}
 #table{text-align:center;}
 #prod_info{text-align:left;}
 #main_price{display:block;text-align:right;}
-#third_prod #buy a
+#buy a
 {
 	display:table-cell;
 	color:white;
@@ -20,9 +21,9 @@
 #buy #pocket{background:black;}
 #buy #buy_now{background:red;}
 #third_prod ul li{list-style:none;float:left;}
-#third_prod_tab{text-align:center;width:1000px;margin-left:auto;margin-right:auto;}
-#third_prod_tab li{display:inline-block;text-align:center;margin-top:50px;}
-#third_prod_tab a
+#tab{text-align:center;width:1000px;margin-left:auto;margin-right:auto;}
+#tab li{display:inline-block;text-align:center;margin-top:50px;}
+#tab a
 {
 	color:black;
 	border:1px solid black;
@@ -44,27 +45,35 @@
 </style>
 <c:import url="ssgtop.jsp"/>
 <div id="third_prod" width="1500" align="center">
+<%@ page import="java.sql.*" %>
+<%@ page import="ssg.dao.ProductDao" %>
+<%@ page import="ssg.dto.ProductDto" %>
+<%
+	ProductDao pdao = new ProductDao();
+	ProductDto pdto = pdao.prod_content(request);
+	pageContext.setAttribute("pdto", pdto);
+%>
 <table width="1200" align="center" id="prod_info">
 	<tr>
-		<td rowspan="8" style="padding-right:50px;vertical-align:top;"> <img src="1.jpg" width="600" height="500"> </td>
+		<td rowspan="8" style="padding-right:50px;vertical-align:top;"> <img src="상품사진/${pdto.prod_id }_i1_290.jpg" width="600" height="500"> </td>
 		<td width="500" style="padding-bottom:10px;">
 			<span style="background:#FFE400;padding:5px;font-weight:bold">이마트몰</span> #No Brand
 		</td>
 	</tr>
 	<tr height="50">
 		<td style="border-top:1px solid grey;border-collapse:collapse;padding-bottom:10px;">
-		<h2>노브랜드 삼겹살</h2>
+		<h2>${pdto.prod_name }</h2>
 		원산지 : 상세설명참조</td>
 	</tr>
 	<tr>
 		<td style="border-top:1px solid grey;border-collapse:collapse;height:70px;padding-bottom:10px;">
-		<h2>10,000원</h2>
+		<h2> <fmt:formatNumber value="${pdto.prod_price }"/> 원</h2>
 		(최소 수량 : 1개  | 최대 수량 : 10개) <!-- 최대 수량 10개로 변경 -->
 		</td>
 	</tr>
 	<tr>
 		<td style="border-top:1px solid grey;border-collapse:collapse;padding-top:10px;padding-bottom:10px;">
-			고객리뷰&nbsp;&nbsp;&nbsp; <span style="font-weight:bold;font-size:25px;">5.0</span>
+			고객리뷰&nbsp;&nbsp;&nbsp; <span style="font-weight:bold;font-size:25px;">${pdto.prod_rate }</span>
 		</td>
 	</tr>
 	<tr>
@@ -72,8 +81,8 @@
 	</tr>
 	<tr> <!-- -/+ 동작 (개수/가격/총 금액 변경) -->
 		<td style="height:100px;padding:10px;border-top:1px solid grey;background:#E6E6E6;border-collapse:collapse;">
-			노브랜드 삼겹살 <p>
-			- 1 + <span id="main_price">10,000원&nbsp;&nbsp;&nbsp;</span>
+			${pdto.prod_name } <p>
+			- 1 + <span id="main_price"> <fmt:formatNumber value="${pdto.prod_price }"/> 원&nbsp;&nbsp;&nbsp;</span>
 		</td>
 	</tr>
 	<tr>
@@ -90,7 +99,7 @@
 </table>
 
 <div style="border-top:1px solid grey;padding-bottom:50px;">
-	<ul id="third_prod_tab">
+	<ul id="tab">
 		<li> <a href="">상품 상세 정보</a> </li>
 		<li> <a href="">배송/반품/교환 안내</a> </li>
 		<li> <a href="">상품 필수 정보</a> </li>
@@ -102,28 +111,27 @@
 <div style="padding-top:20px;"><img src="delievery.png" width="1000"></div>
 <div style="font-weight:bold;font-size:23px;padding-top:30px;">
 	<div style="padding-top:20px;">※ 본 상품 이미지는 대표 상품 이미지입니다.</div><p>
-	<div>■ 상품명 : 한우 장조림용</div><p>
-	<div>■ 판매단위 : 100g</div><p>
+	<div>■ 상품명 : ${pdto.prod_name }</div><p>
 	<div>■ 원산지 : 국내산</div><p>
-	<div style="padding-top:30px;padding-bottom:100px;"> <img src="1.jpg" width="600" height="600"></div>
+	<div style="padding-top:30px;padding-bottom:100px;"> <img src="상품사진/${pdto.prod_id }_i1_290.jpg" width="600" height="600"></div>
 </div>
 <div align="left" style="width:1000px;padding-top:50px;padding-bottom:10px;font-weight:bold;font-size:20px;"><h3>상품 필수 정보</h3></div>
 <table width="1000" id="detail" border="1" style="border:2px solid grey;border-collapse:collapse;" id="table">
 	<tr>
 		<td width="300"> 필수사항1 </td>
-		<td width="700"> 생산자 </td>
+		<td width="700"> ${pdto.prod_opt1 } </td>
 	</tr>
 	<tr>
 		<td> 필수사항2 </td>
-		<td> 유통기한 </td>
+		<td> ${pdto.prod_opt2 } </td>
 	</tr>
 	<tr>
 		<td> 필수사항3 </td>
-		<td> 원산지 </td>
+		<td> ${pdto.prod_opt3 } </td>
 	</tr>
 	<tr>
 		<td> 필수사항4 </td>
-		<td> 보관방법 </td>
+		<td> ${pdto.prod_opt4 } </td>
 	</tr>
 	<tr>
 		<td> 품목 또는 명칭 </td>
@@ -143,7 +151,7 @@
 <div><img src="review.jpg" width="1000" style="padding-bottom:40px;"></div>
 <table border=1 width="1000" height="130" style="border:1px solid grey;border-collapse:collapse;" id="table">
 	<tr align="center">
-		<td><div style="font-size:20px;"> 구매고객 총 평점 : <span style="font-weight:bold;font-size:50px;">4.8</span> / 5.0 </div></td>
+		<td><div style="font-size:20px;"> 구매고객 총 평점 : <span style="font-weight:bold;font-size:50px;">${pdto.prod_rate }</span> / 5.0 </div></td>
 	</tr>
 </table>
 <div style="padding-top:20px;font-size:12px;">※ 리뷰 등록, 수정, 삭제 및 상세 내용은 [MY SSG > 활동관리 > 리뷰 관리]에서 확인하실 수 있습니다.</div>

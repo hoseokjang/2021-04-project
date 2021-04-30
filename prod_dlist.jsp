@@ -49,16 +49,16 @@
 		pstart--;
 	pstart = Integer.parseInt(pstart+"1");
 	int pend= pstart+9;
-	
+
 	ProductDao pdao = new ProductDao();
-	ArrayList<ProductDto> plist = pdao.prod_list(request,index);
-	ResultSet rs = pdao.prod_cate_num(request);
+	ArrayList<ProductDto> plist = pdao.prod_dlist(request, index);
+	ResultSet rs = pdao.prod_dcate_num(request);
 	pageContext.setAttribute("plist", plist);
 %>
 <!-- 문서 시작 -->
 <div id="third_prod_list" align="center" style="width:1500px"> <!-- 전체 문서의 시작 -->
 <div align="center" id="category" style="width:1200px;"> <!-- 큰 카테고리 -->
-	<h2>신선 식품</h2>
+	<h2>상세 카테고리</h2>
 	<div id="category_prod_number" align="right"><span id="prod_number"><%=rs.getInt("cnt") %></span>개의 상품이 있습니다.</div>
 </div> <!-- 큰 카테고리 끝 -->
 
@@ -100,7 +100,6 @@
 			</c:forEach>
 		</ul>
 	</div> <!-- 상품 목록 끝 -->
-	<div>&nbsp;</div>
 </div> <!-- 오른쪽 div 끝 -->
 
 <div> <!-- 페이징 처리 시작 -->

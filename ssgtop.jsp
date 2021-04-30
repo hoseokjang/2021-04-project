@@ -127,8 +127,8 @@
 					<li class="tab_button" onmouseover="sinsun_over()" onmouseout="sinsun_out()">신선식품 &nbsp;&nbsp;
 						<div id="sinsun_tab" style="display:none;">
 								<div>
-									과일<p>
-									<a href="">수박/멜론/참외/토마토</a><br>
+									<a href="prod_list.jsp?prod_category=fruit">과일</a><p>
+									<a href="prod_dlist.jsp?prod_dcategory=melon">수박/멜론/참외/토마토</a><br>
 									<a href="">포도/자두/복숭아</a><br>
 									<a href="">바나나/파인애플</a><br>
 									오렌지/자몽/레몬<br>
