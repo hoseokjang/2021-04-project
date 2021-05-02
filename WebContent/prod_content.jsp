@@ -3,11 +3,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <style>
-#third_pord div{align:center;}
-#table{text-align:center;}
-#prod_info{text-align:left;}
-#prod_main_price{display:inline-block;padding-left:410px;}
-#buy a
+#third_prod div{align:center;}
+#third_prod #table{text-align:center;}
+#third_prod #prod_info{text-align:left;}
+#third_prod #prod_main_price{display:inline-block;padding-left:410px;}
+#third_prod #buy a
 {
 	display:table-cell;
 	color:white;
@@ -18,12 +18,14 @@
 	text-align:center;
 	vertical-align:middle;
 }
-#buy #pocket{background:black;}
-#buy #buy_now{background:red;}
+#third_prod #buy #pocket{background:black;}
+#third_prod #buy #buy_now{background:red;}
 #third_prod ul li{list-style:none;float:left;}
-#tab{text-align:center;width:1000px;margin-left:auto;margin-right:auto;}
-#tab li{display:inline-block;text-align:center;margin-top:50px;}
-#tab a
+#third_prod .tab_header{border-top:1px solid grey;padding-bottom:50px;background:white}
+.tab_header_fixed{position:fixed;top:-10px;padding-left:112px;}
+#third_prod #tab{text-align:center;width:1000px;margin-left:auto;margin-right:auto;}
+#third_prod #tab li{display:inline-block;text-align:center;margin-top:20px;}
+#third_prod #tab a
 {
 	color:black;
 	border:1px solid black;
@@ -34,17 +36,18 @@
 	text-align:center;
 	vertical-align:middle;
 }
-#detail td
+#third_prod #prod_detail td
 {
 	height:60px;padding-left:10px;
 }
-#truck td{border-bottom:1px solid grey;}
-#truck_desc li{padding:3px;list-style:circle;float:none;}
-#prod_change td{border-bottom:1px solid grey;padding-top:10px;padding-bottom:10px;}
-#prod_change_info{font-weight:bold;}
-#prod_num_minus{width:25px;text-align:center;}
-#prod_num_plus{width:25px;text-align:center;}
-#prod_num_text{width:25px;text-align:center;margin-left:-6px;margin-right:-7px;}
+#third_prod #truck td{border-bottom:1px solid grey;}
+#third_prod #truck_desc li{padding:3px;list-style:circle;float:none;}
+#third_prod #prod_change td{border-bottom:1px solid grey;padding-top:10px;padding-bottom:10px;}
+#third_prod #prod_change_info{font-weight:bold;}
+#third_prod #prod_num_minus{width:25px;text-align:center;}
+#third_prod #prod_num_plus{width:25px;text-align:center;}
+#third_prod #prod_num_text{width:25px;text-align:center;margin-left:-6px;margin-right:-7px;}
+
 </style>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
@@ -89,6 +92,19 @@
 			}
 		});
 	});
+	$(function(){
+		var offset = $(".tab_header").offset();
+		$(window).scroll(function(){
+			if ($(document).scrollTop() > offset.top)
+			{
+				$(".tab_header").addClass("tab_header_fixed");
+			}
+			else
+			{
+				$(".tab_header").removeClass("tab_header_fixed");
+			}
+		});
+	});
 </script>
 <c:import url="ssgtop.jsp"/>
 <div id="third_prod" width="1500" align="center">
@@ -126,7 +142,7 @@
 	<tr>
 		<td style="border-top:1px solid grey;border-collapse:collapse;padding-top:8px;padding-bottom:8px;"> <img src="2.jpg"> </td>
 	</tr>
-	<tr> <!-- -/+ 동작 (개수/가격/총 금액 변경) -->
+	<tr> <!-- 주문 문서로 값을 어떻게 전달할지 -->
 		<td style="height:100px;padding:10px;border-top:1px solid grey;background:#E6E6E6;border-collapse:collapse;">
 			${pdto.prod_name } <p>
 			<input type="button" id="prod_num_minus" value="-"> <span id="prod_num"><input type="text" id="prod_num_text" value="1"></span> <input type="button" id="prod_num_plus" value="+"> <span id="prod_main_price"> <fmt:formatNumber value="${pdto.prod_price }"/></span>원
@@ -145,16 +161,15 @@
 	</tr>
 </table>
 
-<div style="border-top:1px solid grey;padding-bottom:50px;">
+<div class="tab_header">
 	<ul id="tab">
-		<li> <a href="">상품 상세 정보</a> </li>
-		<li> <a href="">배송/반품/교환 안내</a> </li>
-		<li> <a href="">상품 필수 정보</a> </li>
+		<li> <a href="#prod_infomation">상품 상세 정보</a> </li>
+		<li> <a href="#prod_review">고객 평점/리뷰</a> </li>
+		<li> <a href="#prod_detail_info">상품 필수 정보</a> </li>
 	</ul>
 </div>
-<!-- 상품정보 Dao로 받아서 변경 -->
-<div align="left" style="width:1000px;border-top:2px solid grey;border-bottom:2px solid grey;margin-top:60px;padding-top:20px;"><h3>상품 상세 정보</h3></div>
-<div align="left" style="width:1000px;border-bottom:2px solid grey;padding-top:20px;padding-bottom:20px;">상품 코드 : ${pdto.prod_id }</div>
+<div id="prod_infomation" align="left" style="width:1000px;border-top:2px solid grey;border-bottom:2px solid grey;margin-top:50px;padding-top:10px;"><h3>상품 상세 정보</h3></div>
+<div align="left" style="width:1000px;border-bottom:2px solid grey;padding-top:15px;padding-bottom:15px;font-size:12px;">상품 코드 : ${pdto.prod_id }</div>
 <div style="padding-top:20px;"><img src="delievery.png" width="1000"></div>
 <div style="font-weight:bold;font-size:23px;padding-top:30px;">
 	<div style="padding-top:20px;">※ 본 상품 이미지는 대표 상품 이미지입니다.</div><p>
@@ -162,8 +177,8 @@
 	<div>■ 원산지 : 국내산</div><p>
 	<div style="padding-top:30px;padding-bottom:100px;"> <img src="상품사진/${pdto.prod_id }_i1_290.jpg" width="600" height="600"></div>
 </div>
-<div align="left" style="width:1000px;padding-top:50px;padding-bottom:10px;font-weight:bold;font-size:20px;"><h3>상품 필수 정보</h3></div>
-<table width="1000" id="detail" border="1" style="border:2px solid grey;border-collapse:collapse;" id="table">
+<div id="prod_detail_info" align="left" style="width:1000px;padding-top:50px;padding-bottom:10px;font-weight:bold;font-size:20px;"><h3>상품 필수 정보</h3></div>
+<table width="1000" id="prod_detail" border="1" style="border:2px solid grey;border-collapse:collapse;">
 	<tr>
 		<td width="300"> 필수사항1 </td>
 		<td width="700"> ${pdto.prod_opt1 } </td>
@@ -194,7 +209,7 @@
 	</tr>
 </table>
 
-<div align="left" style="width:1000px;border-bottom:2px solid grey;padding-top:70px;padding-bottom:20px;font-weight:bold;font-size:25px;">고객리뷰</div>
+<div id="prod_review" align="left" style="width:1000px;border-bottom:2px solid grey;padding-top:70px;padding-bottom:20px;font-weight:bold;font-size:25px;">고객리뷰</div>
 <div><img src="review.jpg" width="1000" style="padding-bottom:40px;"></div>
 <table border=1 width="1000" height="130" style="border:1px solid grey;border-collapse:collapse;" id="table">
 	<tr align="center">

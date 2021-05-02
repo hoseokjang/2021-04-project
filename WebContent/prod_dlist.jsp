@@ -78,7 +78,7 @@
 			<a href="prod_list.jsp?prod_dcategory=<%=prod_dcategory %>&min_prod_price=0&max_prod_price=10000">~1만원</a><p>
 			<a href="prod_list.jsp?prod_dcategory=<%=prod_dcategory %>&min_prod_price=10000&max_prod_price=20000">1만원~2만원</a><p>
 			<a href="prod_list.jsp?prod_dcategory=<%=prod_dcategory %>&min_prod_price=20000&max_prod_price=50000">2만원~5만원</a><p>
-			<a href="prod_list.jsp?prod_dcategory=<%=prod_dcategory %>&min_prod_price=50000&max_prod_price=250000">5만원~25만원</a>
+			<a href="prod_list.jsp?prod_dcategory=<%=prod_dcategory %>&min_prod_price=50000&max_prod_price=300000">5만원~30만원</a>
 		</div>
 	</div>
 </div> <!-- 왼쪽 div끝 -->
