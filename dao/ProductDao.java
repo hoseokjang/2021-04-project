@@ -55,7 +55,7 @@ public class ProductDao {
 		else
 			min_price = Integer.parseInt(prod_min_price);
 		if (prod_max_price == null)
-			max_price = 250000;
+			max_price = 300000;
 		else
 			max_price = Integer.parseInt(prod_max_price);
 		String ord = request.getParameter("ord");
@@ -66,21 +66,24 @@ public class ProductDao {
 			p_ord = Integer.parseInt(ord);
 		if (p_ord == 1)
 		{
-			sql = "select * from product where prod_category=? order by prod_rate desc";
+			sql = "select * from product where prod_category=? order by prod_rate desc limit ?, 20";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, prod_category);
+			pstmt.setInt(2, index);
 		}
 		else if (p_ord == 2)
 		{
-			sql = "select * from product where prod_category=? order by prod_price";
+			sql = "select * from product where prod_category=? order by prod_price limit ?, 20";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, prod_category);
+			pstmt.setInt(2, index);
 		}
 		else if (p_ord == 3)
 		{
-			sql = "select * from product where prod_category=? order by prod_price desc";
+			sql = "select * from product where prod_category=? order by prod_price desc limit ?, 20";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, prod_category);
+			pstmt.setInt(2, index);
 		}
 		else
 		{
@@ -137,7 +140,7 @@ public class ProductDao {
 		else
 			min_price = Integer.parseInt(prod_min_price);
 		if (prod_max_price == null)
-			max_price = 250000;
+			max_price = 300000;
 		else
 			max_price = Integer.parseInt(prod_max_price);
 		String ord = request.getParameter("ord");
@@ -148,21 +151,24 @@ public class ProductDao {
 			p_ord = Integer.parseInt(ord);
 		if (p_ord == 1)
 		{
-			sql = "select * from product where prod_dcategory=? order by prod_rate desc";
+			sql = "select * from product where prod_dcategory=? order by prod_rate desc limit ?, 20";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, prod_dcategory);
+			pstmt.setInt(2, index);
 		}
 		else if (p_ord == 2)
 		{
-			sql = "select * from product where prod_dcategory=? order by prod_price";
+			sql = "select * from product where prod_dcategory=? order by prod_price limit ?, 20";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, prod_dcategory);
+			pstmt.setInt(2, index);
 		}
 		else if (p_ord == 3)
 		{
-			sql = "select * from product where prod_dcategory=? order by prod_price desc";
+			sql = "select * from product where prod_dcategory=? order by prod_price desc limit ?, 20";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, prod_dcategory);
+			pstmt.setInt(2, index);
 		}
 		else
 		{
