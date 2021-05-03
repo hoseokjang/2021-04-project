@@ -10,7 +10,7 @@ public class ProductDao {
 	public ProductDao() throws Exception
 	{
 		Class.forName("com.mysql.jdbc.Driver");
-		String db = "jdbc:mysql://localhost:3306/ssg?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+		String db = "jdbc:mysql://localhost:3306/ssg?";
 		conn = DriverManager.getConnection(db,"admin","1234");
 	}
 	public ResultSet prod_category_get(HttpServletRequest request) throws Exception
@@ -28,7 +28,7 @@ public class ProductDao {
 		return rs;
 	}
 	public ResultSet prod_dcategory_get(HttpServletRequest request) throws Exception
-	{	// 수정 필요
+	{	
 		String prod_category = request.getParameter("prod_category");
 		String prod_dcategory = request.getParameter("prod_dcategory");
 		String sql = null;
@@ -247,5 +247,22 @@ public class ProductDao {
 		
 		return pdto;
 	}
-
+	public Integer prod_cnt(HttpServletRequest request,String prod_category) throws Exception
+	{
+		String sql = "select count(*) as cnt from product where prod_category='"+prod_category+"'";
+		Statement stmt = conn.createStatement();
+		ResultSet rs = stmt.executeQuery(sql);
+		rs.next();
+		int cnt = rs.getInt("cnt");
+		return cnt;
+	}
+	public Integer prod_dcnt(HttpServletRequest request,String prod_dcategory) throws Exception
+	{
+		String sql = "select count(*) as cnt from product where prod_dcategory='"+prod_dcategory+"'";
+		Statement stmt = conn.createStatement();
+		ResultSet rs = stmt.executeQuery(sql);
+		rs.next();
+		int cnt = rs.getInt("cnt");
+		return cnt;
+	}
 }
