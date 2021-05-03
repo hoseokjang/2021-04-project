@@ -22,7 +22,8 @@
 #third_prod #buy #buy_now{background:red;}
 #third_prod ul li{list-style:none;float:left;}
 #third_prod .tab_header{border-top:1px solid grey;padding-bottom:50px;background:white}
-.tab_header_fixed{position:fixed;top:-10px;padding-left:112px;}
+
+.tab_body_fixed{position:fixed;top:-10px;height:140px;background:white;width:100vw;align:center}
 #third_prod #tab{text-align:center;width:1000px;margin-left:auto;margin-right:auto;}
 #third_prod #tab li{display:inline-block;text-align:center;margin-top:20px;}
 #third_prod #tab a
@@ -93,18 +94,30 @@
 		});
 	});
 	$(function(){
-		var offset = $(".tab_header").offset();
+		var offset = $(".tab_body").offset();
 		$(window).scroll(function(){
 			if ($(document).scrollTop() > offset.top)
 			{
-				$(".tab_header").addClass("tab_header_fixed");
+				$(".tab_body").addClass("tab_body_fixed");
 			}
 			else
 			{
-				$(".tab_header").removeClass("tab_header_fixed");
+				$(".tab_body").removeClass("tab_body_fixed");
 			}
 		});
 	});
+	function pocket(val1)
+	{
+		var num = document.getElementById("prod_num_text").value;
+		var id = val1;
+		location.href="test.jsp?id="+id+"&num"+num;
+	}
+	function buy_now(val1)
+	{
+		var num = document.getElementById("prod_num_text").value;
+		var id = val1;
+		location.href="test.jsp?id="+id+"&num"+num;
+	}
 </script>
 <c:import url="ssgtop.jsp"/>
 <div id="third_prod" width="1500" align="center">
@@ -154,22 +167,23 @@
 	<tr align="center">
 		<td>
 			<ul id="buy">
-				<li style="margin-bottom:20px;"><a href="" id="pocket">장바구니</a></li>
-				<li><a href="" id="buy_now">바로구매</a></li> <!-- 주문에 보낼 때 상품코드(prod_id)와 상품개수(id="prod_num") 전달하는 방식? -->
+				<li style="margin-bottom:20px;"><a href="javascript:pocket('${pdto.prod_id }')" id="pocket">장바구니</a></li>
+				<li><a href="javascript:buy_now('${pdto.prod_id }')" id="buy_now">바로구매</a></li>
 			</ul>
 		</td>
 	</tr>
 </table>
-
 <div class="tab_header">
+	<div class="tab_body">
 	<ul id="tab">
 		<li> <a href="#prod_infomation">상품 상세 정보</a> </li>
 		<li> <a href="#prod_review">고객 평점/리뷰</a> </li>
 		<li> <a href="#prod_detail_info">상품 필수 정보</a> </li>
 	</ul>
+	</div>
 </div>
 <div id="prod_infomation" align="left" style="width:1000px;border-top:2px solid grey;border-bottom:2px solid grey;margin-top:50px;padding-top:10px;"><h3>상품 상세 정보</h3></div>
-<div align="left" style="width:1000px;border-bottom:2px solid grey;padding-top:15px;padding-bottom:15px;font-size:12px;">상품 코드 : ${pdto.prod_id }</div>
+<div align="left" style="width:1000px;border-bottom:2px solid grey;padding-top:15px;padding-bottom:15px;font-size:12px;">상품 코드 : <span id="prod_id">${pdto.prod_id }</span></div>
 <div style="padding-top:20px;"><img src="delievery.png" width="1000"></div>
 <div style="font-weight:bold;font-size:23px;padding-top:30px;">
 	<div style="padding-top:20px;">※ 본 상품 이미지는 대표 상품 이미지입니다.</div><p>

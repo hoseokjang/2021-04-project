@@ -3,6 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <style>
+	#third_prod_list a
+	{
+		text-decoration:none;color:black;
+	}
 	#prod_category
 	{
 		padding-top:20px;padding-bottom:20px;margin:20px;
@@ -31,6 +35,7 @@
 	#list li{display:inline-block;float:left;list-style:none;padding:20px;}
 	#img{width:200px;height:250px;}
 	#info{text-align:left;}
+	#prod_page a{padding-left:4px;padding-right:4px;}
 </style>
 <c:import url="ssgtop.jsp"/>
 <%@ page import="java.sql.*" %>
@@ -43,13 +48,8 @@
 		ppage = 1;	
 	else
 		ppage = Integer.parseInt(request.getParameter("ppage"));	
-	int index = (ppage-1) * 10;
-	int pstart=ppage/10;
-	if (ppage%10==0)
-		pstart--;
-	pstart = Integer.parseInt(pstart+"1");
-	int pend= pstart+9;
-	
+	int index = (ppage-1) * 20;
+
 	ProductDao pdao = new ProductDao();
 	ArrayList<ProductDto> plist = pdao.prod_list(request,index);
 	ResultSet rs = pdao.prod_cate_num(request);
@@ -94,7 +94,7 @@
 			<li>
 				<div id="prod_img"><a href="prod_readnum.jsp?prod_id=${pdto.prod_id }"><img src="상품사진/${pdto.prod_id }_i1_290.jpg" id="img"></a></div>
 				<div id="info">
-					<div> 이마트몰</div>
+					<div id="prod_dlist_emart" style="width:65px;background:#FFE400;padding:3px;font-weight:bold"> 이마트몰</div>
 					<div> #No Brand</div>
 					<div style="width:200px;height:60px;overflow:hidden;font-size:14px;"> <a href="prod_readnum.jsp?prod_id=${pdto.prod_id }">${pdto.prod_name }</a> </div>
 					<div> <fmt:formatNumber value="${pdto.prod_price }"/>원 </div>
@@ -104,19 +104,53 @@
 			</c:forEach>
 		</ul>
 	</div> <!-- 상품 목록 끝 -->
-	<div>&nbsp;</div>
 </div> <!-- 오른쪽 div 끝 -->
 
 <div> <!-- 페이징 처리 시작 -->
-	<div>
-		<a href="">1</a>
-		<a href="">2</a>
-		<a href="">3</a>
-		<a href="">4</a>
-		<a href="">5</a>
-		<a href="">6</a>
-		<a href="">7</a>
-		<a href="">8</a>
+	<div id="prod_page" style="padding-left:300px;">
+	<%
+		int pstart=ppage/10;
+		if (ppage%10==0)
+			pstart--;
+		pstart = Integer.parseInt(pstart+"1");
+		int pend= pstart+9;
+		int cnt = pdao.prod_cnt(request, rs2.getString("prod_category"));
+		int page_cnt = cnt/20;
+		if (cnt%10 != 0)
+			page_cnt++;
+		if (pend > page_cnt) // 마지막 페이지 업데이트
+			pend = page_cnt;	
+	%>
+		<%if(ppage != 1){ %>
+			<a href="prod_list.jsp?prod_category=<%=rs2.getString("prod_category") %>&ppage=<%=(ppage-1) %>">◁</a>
+		<%}
+		String str = null;
+		for (int i = pstart; i<=pend; i++)
+		{
+			if (ppage == i)
+				str="style='color:red;font-weight:bold'";
+			else
+				str ="";
+		%>
+				<a href="prod_list.jsp?prod_category=<%=rs2.getString("prod_category") %>&ppage=<%=i %>" <%=str %>> <%=i %> </a>
+		<%
+		/*	if (i==page_cnt)
+				break;
+		*/
+		}
+		if (ppage != page_cnt)
+		{
+		%>
+			<a href="prod_list.jsp?prod_category=<%=rs2.getString("prod_category") %>&ppage=<%=ppage+1 %>">▷</a>
+		<%
+		}
+		else
+		{
+		%>
+			
+		<%
+		}
+		%>
 	</div>
 </div> <!-- 페이징 처리 끝 -->
 </div> <!-- 전체 문서의 끝 -->
