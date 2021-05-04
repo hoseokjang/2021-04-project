@@ -10,7 +10,7 @@ public class ProductDao {
 	public ProductDao() throws Exception
 	{
 		Class.forName("com.mysql.jdbc.Driver");
-		String db = "jdbc:mysql://localhost:3306/ssg?";
+		String db = "jdbc:mysql://localhost:3306/ssg";
 		conn = DriverManager.getConnection(db,"admin","1234");
 	}
 	public ResultSet prod_category_get(HttpServletRequest request) throws Exception
@@ -36,7 +36,7 @@ public class ProductDao {
 			sql = "select distinct prod_dcategory from product where prod_category='"+prod_category+"'";
 		else if (prod_category == null)
 		{
-			// sql = "select distinct prod_dcategory from product where prod_category=";
+			sql = "select distinct prod_dcategory from product where prod_category=(select distinct prod_category from product where prod_dcategory='"+prod_dcategory+"')";
 		}
 		Statement stmt = conn.createStatement();
 		ResultSet rs = stmt.executeQuery(sql);
@@ -249,9 +249,19 @@ public class ProductDao {
 	}
 	public Integer prod_cnt(HttpServletRequest request,String prod_category) throws Exception
 	{
-		String sql = "select count(*) as cnt from product where prod_category='"+prod_category+"'";
-		Statement stmt = conn.createStatement();
-		ResultSet rs = stmt.executeQuery(sql);
+		int min_price = 0,max_price = 300000;
+		String prod_min_price = request.getParameter("min_prod_price");
+		String prod_max_price = request.getParameter("max_prod_price");
+		if (prod_min_price == null)
+			min_price = 0;
+		if (prod_max_price == null)
+			max_price = 300000;
+		String sql = "select count(*) as cnt from product where prod_category=? and prod_price > ? and prod_price < ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, prod_category);
+		pstmt.setInt(2, min_price);
+		pstmt.setInt(3, max_price);
+		ResultSet rs = pstmt.executeQuery();
 		rs.next();
 		int cnt = rs.getInt("cnt");
 		return cnt;
