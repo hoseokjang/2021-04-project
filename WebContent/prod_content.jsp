@@ -110,13 +110,13 @@
 	{
 		var num = document.getElementById("prod_num_text").value;
 		var id = val1;
-		location.href="test.jsp?id="+id+"&num"+num;
+		location.href="test.jsp?prod_id="+id+"&order_quantity="+num;
 	}
 	function buy_now(val1)
 	{
 		var num = document.getElementById("prod_num_text").value;
 		var id = val1;
-		location.href="test.jsp?id="+id+"&num"+num;
+		location.href="test.jsp?prod_id="+id+"&order_quantity="+num;
 	}
 </script>
 <c:import url="ssgtop.jsp"/>

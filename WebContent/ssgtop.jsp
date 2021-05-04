@@ -129,24 +129,36 @@
 								<div>
 									<a href="prod_list.jsp?prod_category=fruit">과일</a><p>
 									<a href="prod_dlist.jsp?prod_dcategory=melon">수박/멜론/참외/토마토</a><br>
-									<a href="">포도/자두/복숭아</a><br>
-									<a href="">바나나/파인애플</a><br>
-									오렌지/자몽/레몬<br>
-									사과/배<br>
-									딸기/키위/블루베리<br>
-									감귤/만감류<br>
-									감/곶감<br>
+									<a href="prod_dlist.jsp?prod_dcategory=grape">포도/자두/복숭아</a><br>
+									<a href="prod_dlist.jsp?prod_dcategory=banana">바나나/파인애플</a><br>
+									<a href="prod_dlist.jsp?prod_dcategory=orange">오렌지/자몽/레몬</a><br>
+									<a href="prod_dlist.jsp?prod_dcategory=apple">사과/배</a><br>
+									<a href="prod_dlist.jsp?prod_dcategory=strawberry">딸기/키위/블루베리</a><br>
+									<a href="prod_dlist.jsp?prod_dcategory=gam">감/곶감</a><br>
 								</div>
 								<div>
-									채소<p>
-									두부/콩나물/숙주나물<br>
-									고구마/감자<br>
-									양파/마늘/파/생강<br>
-									오이/가지/호박/옥수수<br>
-									상추/깻잎/쌈채소<br>
-									고추/피망/파프리카<br>
-									시금치/부추/나물<br>
-									양배추/양상추/브로콜리<br>
+									<a href="prod_list.jsp?prod_category=vegetable">채소</a><p>
+									<a href="prod_dlist.jsp?prod_dcategory=tofu">두부/콩나물/숙주나물</a><br>
+									<a href="prod_dlist.jsp?prod_dcategory=potato">고구마/감자</a><br>
+									<a href="prod_dlist.jsp?prod_dcategory=onion">양파/마늘/파/생강</a><br>
+									<a href="prod_dlist.jsp?prod_dcategory=corn">오이/가지/호박/옥수수</a><br>
+									<a href="prod_dlist.jsp?prod_dcategory=ssam">상추/깻잎/쌈채소</a><br>
+									<a href="prod_dlist.jsp?prod_dcategory=green">시금치/부추/나물</a><br>
+									<a href="prod_dlist.jsp?prod_dcategory=chili">고추/피망/파프리카</a><br>
+								</div>
+								<div>
+									<a href="prod_list.jsp?prod_category=fish">수산물</a><p>
+									<a href="prod_dlist.jsp?prod_dcategory=fish">생선</a><br>
+									<a href="prod_dlist.jsp?prod_dcategory=driedfish">건오징어/건어물</a><br>
+									<a href="prod_dlist.jsp?prod_dcategory=gul">전복/굴/멍게/조개류</a><br>
+									<a href="prod_dlist.jsp?prod_dcategory=octopus">오징어/낙지/주꾸미/문어</a><br>
+								</div>
+								<div>
+									<a href="prod_list.jsp?prod_category=pork">정육/계란</a><p>
+									<a href="prod_dlist.jsp?prod_dcategory=egg">계란/알류</a><br>
+									<a href="prod_dlist.jsp?prod_dcategory=chicken">닭/오리고기</a><br>
+									<a href="prod_dlist.jsp?prod_dcategory=ppork">돼지고기</a><br>
+									<a href="prod_dlist.jsp?prod_dcategory=beef">소고기</a><br>
 								</div>
 						</div>
 					</li>
